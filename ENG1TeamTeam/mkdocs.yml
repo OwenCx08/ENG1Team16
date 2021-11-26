@@ -1,0 +1,12 @@
+site_name: TeamTeam
+nav:
+  - Home: index.md
+  - About: about.md
+  - Requirements: Requirements.md
+  - Architecture: Architecture.md
+  - Method Selection and Planning: MethodSelectionAndPlanning.md
+  - Risk Assessment and Mitigation: RiskAssessmentAndMitigation.md
+  - Implementation: Implementation.md
+  
+theme:
+    name: readthedocs
