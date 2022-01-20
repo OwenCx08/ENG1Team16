@@ -1,3 +1,4 @@
+package com.mygdx.game.GameObjects.Ships;
 public class EnemyShip extends Ship{
     protected int enemyID;
     public EnemyShip(int id, float width,float height, String spriteName, int health, int[] position, int range, int moveRange,int enemyID){

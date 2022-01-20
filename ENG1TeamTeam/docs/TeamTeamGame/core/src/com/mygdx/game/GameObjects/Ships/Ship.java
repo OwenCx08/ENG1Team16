@@ -1,3 +1,5 @@
+package com.mygdx.game.GameObjects.Ships;
+import com.mygdx.game.GameObjects.Entity;
 public class Ship extends Entity{
     protected int range;
     protected int moveRange;

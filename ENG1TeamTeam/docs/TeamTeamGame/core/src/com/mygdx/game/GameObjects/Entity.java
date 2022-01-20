@@ -1,3 +1,4 @@
+package com.mygdx.game.GameObjects; 
 public class Entity{
     protected int ID;
     protected float width;
@@ -27,8 +28,8 @@ public class Entity{
         
     }
 
-    public int[] draw(){
-        int[] data = {this.position[0],this.position[1],this.width,this.height};//May need image data
+    public float[] draw(){
+        float[] data = {this.position[0],this.position[1],this.width,this.height};//May need image data
         return(data);
     }
 }

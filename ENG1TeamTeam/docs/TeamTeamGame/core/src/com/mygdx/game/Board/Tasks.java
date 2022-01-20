@@ -1,3 +1,4 @@
+package com.mygdx.game.Board;
 public class Tasks{
     public void Tasks(){
         //First task--MOVE!
