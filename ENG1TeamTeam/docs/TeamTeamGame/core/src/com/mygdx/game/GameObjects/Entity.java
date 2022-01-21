@@ -16,11 +16,7 @@ public class Entity{
         this.position = position;
     }
 
-    public Boolean detectCollision(){
-        boolean collision = false;
-        //Colision detection
-        return(collision);
-    }
+
 
     public void attack(int[] position){
         //attach method

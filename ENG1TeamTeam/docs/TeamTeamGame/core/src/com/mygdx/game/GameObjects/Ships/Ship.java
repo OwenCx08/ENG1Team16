@@ -15,6 +15,13 @@ public class Ship extends Entity{
         this.position[1]+=position[1];
     }
 
+        public Boolean detectCollision(){
+        boolean collision = false;
+        //Colision detection
+        
+        return(collision);
+    }
+    
     public int[] checkMove(int[] position){
         int[] data = {this.position[0]+position[0],this.position[1]=position[1]};
         //this.checkYBounds(this.position[0]+position[0]);
