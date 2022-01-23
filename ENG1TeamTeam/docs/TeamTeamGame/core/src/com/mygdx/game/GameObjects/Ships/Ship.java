@@ -15,7 +15,7 @@ public class Ship extends Entity{
         this.position[1]+=position[1];
     }
 
-        public Boolean detectCollision(){
+    public Boolean detectCollision(){
         boolean collision = false;
         //Colision detection
         

@@ -1,6 +1,11 @@
 package com.mygdx.game;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -35,13 +40,19 @@ public class Main extends ApplicationAdapter {
 	    protected Enemy[] enemies;
 	    protected Map gameMap;
 	    protected int points;
+		protected int[] screenDimentions = {-1,-1};
 	    public Main(){
 	        this.SetupGraphics();
 	        this.tasks = this.SetupTasks();
-	        this.playerOne = new Player();//Player start data
-	        this.enemies = this.SetupEnemys();
+			int[] playerPosition = {1012,890};
+	        this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
+	        //							id, width, height, spriteName, health, position
+			this.enemies = this.SetupEnemys();
 	        this.gameMap = this.CreateMap();
 	        this.points = 0;
+			this.screenDimentions[0] = 1024;//?
+			this.screenDimentions[1] = 900;//?
+			this.playerOne.SetupMouse(this.screenDimentions,this.gameMap);
 	    }
 
 	    private void SetupGraphics(){
@@ -67,12 +78,12 @@ public class Main extends ApplicationAdapter {
 	        return(map);
 	    }
 
-	    private void draw(int[] data){
+	    private void draw(float[] data){
 	        //[x,y,width,height] so far
 	    }
 
 	    public void draw(){
-	        int[] data;
+	        float[] data;
 	        
 	        data = this.gameMap.draw();
 	        this.draw(data);
@@ -92,5 +103,5 @@ public class Main extends ApplicationAdapter {
 
 	    }
 
-	}
+	
 }
