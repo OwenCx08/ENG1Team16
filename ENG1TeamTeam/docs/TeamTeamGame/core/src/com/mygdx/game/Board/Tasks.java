@@ -39,13 +39,20 @@ public class Tasks implements ApplicationListener {
             int[] position = checkmove();
             
             if(position!=[29,15]){
-                taskState = 1
+                taskState = 1;
                 }
         }
         
             
         //Second task--destory an EnemyShip
-        while(task
+        while(taskState == 1){
+            Gdx.gl.glClearColor(1, 1, 1, 1);
+            Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        
+            batch.begin();
+            font.draw(batch, "Time to destory som ships,try to click that enemy ship to attack it.", 200, 200);
+            batch.end();
+            
         //Third task--destory the first EnemyCollege
         
         //Last task--destoryanother college(a stranger one?)
