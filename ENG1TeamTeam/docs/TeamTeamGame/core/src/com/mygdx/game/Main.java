@@ -67,7 +67,9 @@ public class Main extends ApplicationAdapter {
 
 
 	    private Enemy[] SetupEnemys(){
-	        Enemy[] data = {new Enemy()};
+			int[] coord1 = {800, 0};//To randomise in area
+			int[] coord2 = {0, 800};//To randomise in area
+	        Enemy[] data = {new Enemy(5,"Vanbrugh",coord1,10),new Enemy(30,"Derwent",coord2,25)};
 	        // Setup the Enemys
 	        return(data);
 	    }
@@ -85,17 +87,19 @@ public class Main extends ApplicationAdapter {
 	    public void draw(){
 	        float[] data;
 	        
-	        data = this.gameMap.draw();
-	        this.draw(data);
+	        //data = 
+			this.gameMap.draw();
+	        //this.draw(data);
 
-	        for(int index=0;index<this.tasks.length;index++){
-	            data = this.tasks[index].draw();
-	            this.draw(data);
-	        };
+	        //for(int index=0;index<this.tasks.length;index++){
+	        //    data = this.tasks[index].draw();
+	        //    this.draw(data);
+	        //};
 
 	        for(int index=0;index<this.enemies.length;index++){
-	            data = this.enemies[index].draw();
-	            this.draw(data);
+	            //data = 
+				this.enemies[index].draw();
+	            //this.draw(data);
 	        };
 
 	        data = this.playerOne.draw();

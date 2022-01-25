@@ -6,7 +6,9 @@ public class Map{
         // 3 is friendly ship
         // 4+ is an enemy entity
         // Map is initialised with no objects on it, the land on the map is the same everytime
-    public int[][] mapGrid = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    public int[][] mapGrid;
+    public Map(){
+        int[][] data = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                             {1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1},
                             {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1},
                             {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1},
@@ -24,14 +26,17 @@ public class Map{
                             {1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
                             {1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1},
                             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-
-
                         };
-
+        this.mapGrid = data;
+    }
 
     //Coordinates are stored in the format (y,x)
 
     public int getAt(int x, int y){
         return mapGrid[y][x];
+    }
+
+    public void draw(){
+        //Fill in
     }
 }

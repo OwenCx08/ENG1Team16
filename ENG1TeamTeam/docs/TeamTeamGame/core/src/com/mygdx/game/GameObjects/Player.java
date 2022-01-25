@@ -4,14 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.mygdx.game.Board.Map;
+import com.mygdx.game.GameObjects.Colleges.PlayerCollege;
+import com.mygdx.game.GameObjects.Ships.PlayerShip;
 
 public class Player extends Entity{
-    int[] screenDimentions ={-1,-1};
-    Map gameMap;
+    protected int[] screenDimentions ={-1,-1};
+    protected Map gameMap;
+	protected PlayerCollege college;
+	protected PlayerShip ship;
     public Player(int id, float width,float height, String spriteName, int health, int[] position){
         super(id, width, height, spriteName, health, position);
-        //
-    }
+        this.college = new PlayerCollege(id, "James",width, height,spriteName,health,position,2);
+		this.ship = new PlayerShip(id, width, height, spriteName, health, position,2,5);
+	}
 
     public void move(int[] position){//moves the ship x,y "steps"
         this.position[0]+=position[0];
