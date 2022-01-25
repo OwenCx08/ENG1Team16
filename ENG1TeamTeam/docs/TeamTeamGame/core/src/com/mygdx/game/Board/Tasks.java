@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.mygdx.game.GameObjects.Player;
+import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
 public class Tasks implements ApplicationListener {
     private SpriteBatch batch;
@@ -53,7 +54,7 @@ public class Tasks implements ApplicationListener {
             font.draw(batch, "Time to destory som ships,try to click that enemy ship to attack it.", 200, 200);
             batch.end();
             //if ship hp == 0 then state2
-        
+            if(
         }
             
         //Third task--destory the first EnemyCollege
