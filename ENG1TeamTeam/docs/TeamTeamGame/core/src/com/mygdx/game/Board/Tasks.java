@@ -1,12 +1,11 @@
 package com.mygdx.game.Board;
-
+/*
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
@@ -45,7 +44,7 @@ public class Tasks implements ApplicationListener {
                 }
         }
         
-            
+
         //Second task--destory an EnemyShip
         while(taskState == 1){
             Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -55,10 +54,9 @@ public class Tasks implements ApplicationListener {
             font.draw(batch, "Time to destory some ships,try to click that enemy ship to attack it.", 200, 200);
             batch.end();
             //if enemyship hp == 0 then state2
-            Boolean enemystate = EnemyShip.checkIfAlive()
+            Boolean enemystate = EnemyShip.checkIfAlive();
             if(enemystate==false){
                 state =2;
-            
             }
         }
             
@@ -116,4 +114,8 @@ public class Tasks implements ApplicationListener {
         // TODO Auto-generated method stub
         
     }
+
 }
+
+*/
+

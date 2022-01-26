@@ -3,6 +3,9 @@ package com.mygdx.game.Board;
 import java.util.HashMap;
 
 public enum TileType {
+    /*
+    This sets up the different types of tiles that are going to be used by the map
+     */
 
     darkWater(1,true,"DarkWater"),
     darkBeach(2,false,"darkBeach"),
@@ -57,6 +60,7 @@ public enum TileType {
 
     static {
         tileMap = new HashMap<Integer,TileType>();
+        System.out.println(tileMap);
         for(TileType TileType: TileType.values()){
             tileMap.put(TileType.getId(),TileType);
         }
