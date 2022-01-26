@@ -54,11 +54,12 @@ public class Tasks implements ApplicationListener {
             batch.begin();
             font.draw(batch, "Time to destory som ships,try to click that enemy ship to attack it.", 200, 200);
             batch.end();
-            //if ship hp == 0 then state2
+            //if enemyship hp == 0 then state2
+            Boolean enemystate = EnemyShip.CheckIfAlive()
+            if(enemystate==false){
+                state =2;
             
-            //if(){
-            //
-            //}
+            }
         }
             
         //Third task--destory the first EnemyCollege
@@ -69,7 +70,7 @@ public class Tasks implements ApplicationListener {
             batch.begin();
             font.draw(batch, "At North-east of the lake, there is a college with great wealth. Conquer that college can help you to upgrade your ship.", 200, 200);
             batch.end();
-            //if ship college1hp=0 then state3
+            //if ship VanbrughHp=0 then state3
         
         }
         //Last task--destoryanother college(a stranger one?)
@@ -80,7 +81,10 @@ public class Tasks implements ApplicationListener {
             batch.begin();
             font.draw(batch, "Now, sail to the south-west and conquer the last college.", 200, 200);
             batch.end();
-            //if ship college2hp=0 then state4
+            //if ship DerwentHp=0 then state4
+        }
+        if(state == 4){
+            //wining page
         }
     }
 
