@@ -1,0 +1,15 @@
+diff a/ENG1TeamTeam/docs/TeamTeamGame/core/src/com/mygdx/game/Board/Tasks.java b/ENG1TeamTeam/docs/TeamTeamGame/core/src/com/mygdx/game/Board/Tasks.java	(rejected hunks)
+@@ -1,12 +1,11 @@
+ package com.mygdx.game.Board;
+-
++/*
+ import com.badlogic.gdx.ApplicationListener;
+ import com.badlogic.gdx.Gdx;
+ import com.badlogic.gdx.graphics.Color;
+ import com.badlogic.gdx.graphics.GL20;
+ import com.badlogic.gdx.graphics.g2d.BitmapFont;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+-
+ import com.mygdx.game.GameObjects.Player;
+ import com.mygdx.game.GameObjects.Ships.EnemyShip;
+ 
