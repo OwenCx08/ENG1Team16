@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+ <editorsettings>
+  <export target="Eng1Map.tmx" format="tmx"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Eng1TileSet.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="32" height="18">
+  <data encoding="base64" compression="zlib">
+   eJytlVkOhCAMhuvoOKKzPsx6Oo/GUTzatAFMJazCw5cmmvB3+SkDAAweJoC5B1hSODgYA2efkUvgP4HnyiPGVBoLzGE2Z2EuM8/ribwitYtC/Y7pYZT8+wjhPudqu/S5Xsf0eW/21Jmr78Lo5864VL9TPiA/yBr6Qs0ODCKuv7kfpfo983huPb3qhcyZW2PVPuk+1tJvNbEZUq9J2747OV629VuLmHdL/ROqP5RDrbvrm3+qfg3vhuov3R0nzZ76a+yuFP1R7QI6k3xddXf69AW7P3eMD1BeTt0FzH+LvftS537FeEO+yA/WN3rtRQizux1v9iYfH1T3G+MH+QP1uUT/
+  </data>
+ </layer>
+ <layer id="2" name="Highlighted" width="32" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiZgA+I+QfaEaNgFIyCUTAKRsEIAyJALArEQkAsPAD2iwGxOBADABpvAJk=
+  </data>
+ </layer>
+</map>
