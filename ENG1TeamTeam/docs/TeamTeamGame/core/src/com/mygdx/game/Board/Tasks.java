@@ -52,10 +52,10 @@ public class Tasks implements ApplicationListener {
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
             batch.begin();
-            font.draw(batch, "Time to destory som ships,try to click that enemy ship to attack it.", 200, 200);
+            font.draw(batch, "Time to destory some ships,try to click that enemy ship to attack it.", 200, 200);
             batch.end();
             //if enemyship hp == 0 then state2
-            Boolean enemystate = EnemyShip.CheckIfAlive()
+            Boolean enemystate = EnemyShip.checkIfAlive()
             if(enemystate==false){
                 state =2;
             

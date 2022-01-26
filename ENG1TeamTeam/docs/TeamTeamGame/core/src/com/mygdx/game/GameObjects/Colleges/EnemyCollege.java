@@ -12,4 +12,7 @@ public class EnemyCollege extends College{
         //  - if in range return location/head to location
         return(data);
     }
+    public Boolean checkIfAlive(){
+        return(health<=0);
+    }
 }
