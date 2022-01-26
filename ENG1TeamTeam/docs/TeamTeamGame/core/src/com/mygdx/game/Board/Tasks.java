@@ -57,7 +57,7 @@ public class Tasks implements ApplicationListener {
             //if enemyship hp == 0 then state2
             Boolean enemystate = EnemyShip.checkIfAlive()
             if(enemystate==false){
-                state =2;
+                taskstate =2;
             
             }
         }
