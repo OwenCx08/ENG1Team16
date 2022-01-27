@@ -29,8 +29,13 @@ public class Ship extends Entity{
         //this.checkXBounds(this.position[1]+position[1]);
         return(data);//Where the ship will be, is it out of bounds?
     }
-    
+
+
     public void relocate(int[] position){//Sets location to x,y
         this.position = position;
+    }
+
+    public int getRange(){
+        return this.range;
     }
 }

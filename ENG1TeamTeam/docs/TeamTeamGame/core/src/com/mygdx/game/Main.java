@@ -23,8 +23,9 @@ public class Main extends ApplicationAdapter {
 	int[] player;
 	SpriteBatch sb;
 	Texture texture;
-	Sprite sprite;
-	
+	Sprite highlightedSprite;
+	Sprite Player;
+
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -33,35 +34,76 @@ public class Main extends ApplicationAdapter {
 		gameMap = new Map();
 		sb = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("highlighted.png"));
-		sprite = new Sprite(texture);
+		highlightedSprite = new Sprite(texture);
+		this.SetupGraphics();
+		int[] playerPosition = {896,128};
+		this.playerOne = new Player(0, 100, 100, "VanbrughBoat.png", 100, playerPosition);//Player start data
+		//							id, width, height, spriteName, health, position
+		this.enemies = this.SetupEnemys();
+		//this.gameMap = this.CreateMap();
+		this.points = 0;
+		Player = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
+		System.out.println(playerOne.getX() +""+ Player.getY());
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
-		ScreenUtils.clear(1, 0, 0, 1);
-
-		camera.update();
 		Vector3 pos = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(),0));
-		int x =(int) (pos.x/TileType.TileSize)*32;
-		int y =(int) (pos.y/TileType.TileSize)*32;
+		int X =(int) (pos.x/ TileType.TileSize)*32;
+		int Y =(int) (pos.y/TileType.TileSize)*32;
+		int gameX =  (X/TileType.TileSize);
+		int gameY =  (Y/TileType.TileSize);
 		sb.setProjectionMatrix(camera.combined);
-		TileType type = gameMap.getTileTypebyLoc(1,pos.x,pos.y);
+		camera.update();
+		TileType type = gameMap.getTileTypebyLoc(1,X,Y);
 		if(Gdx.input.justTouched()){
-
 			if (type != null && type.isClickable()){
-				System.out.println("Player has moved to "+(int) (pos.x/TileType.TileSize)+"X"+(int) (pos.y/TileType.TileSize)+"Y"+type.getName());
+				System.out.println(gameX+"X,"+gameY+"Y");
+				System.out.println(X+","+Y);
+				int[] newPos = {X,Y};
+				playerOne.relocate(newPos);
+
 				//player move
 			}else{
 				System.out.println("Player cannot move there");
 			}
 		}
+		int upperX = playerOne.getX()+ playerOne.getRange()*32;
+		int lowerX = playerOne.getX()- playerOne.getRange()*32;
+		int upperY = playerOne.getY()+ playerOne.getRange()*32;
+		int lowerY = playerOne.getY()- playerOne.getRange()*32;
+
+		System.out.println(upperX);
+
+
 		gameMap.render(camera);
 		sb.begin();
-		sprite.draw(sb);
-		sprite.setPosition(x, y);
+		Player.draw(sb);
+		Player.setPosition(playerOne.getX(),playerOne.getY());
+		highlightedSprite.setPosition(X, Y);
+		if (X <= upperX && X >= lowerX) {
+			if (Y <= upperY && Y >= lowerY) {
+				if(type.isClickable()) {
+					highlightedSprite.setColor(255, 255, 255, 255);
+					System.out.println("Clickable");
+				}else {
+					highlightedSprite.setColor(255,0,0,255);
+					System.out.println("Not clickable");
+				}
+			}else {
+				highlightedSprite.setColor(255,0,0,255);
+				System.out.println("Not clickable");
+			}
+		}else {
+			highlightedSprite.setColor(255,0,0,255);
+			System.out.println("Not clickable");
+		}
+		highlightedSprite.draw(sb);
 		sb.end();
-	}
+		}
+
+
 
 
 	//protected Tasks[] tasks;
@@ -80,6 +122,7 @@ public class Main extends ApplicationAdapter {
 	        this.points = 0;
 			this.screenDimentions[0] = 1024;//?
 			this.screenDimentions[1] = 900;//?
+
 			//this.playerOne.SetupMouse(this.screenDimentions,this.gameMap);
 	    }
 

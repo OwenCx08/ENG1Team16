@@ -3,7 +3,9 @@ package com.mygdx.game.GameObjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Board.Map;
+import com.mygdx.game.Board.TileType;
 import com.mygdx.game.GameObjects.Colleges.PlayerCollege;
 import com.mygdx.game.GameObjects.Ships.PlayerShip;
 
@@ -36,9 +38,32 @@ public class Player extends Entity{
         //this.checkXBounds(this.position[1]+position[1]);
         return(data);//Where the ship will be, is it out of bounds?
     }
-    
+
+	public String getTexture(){
+		return  this.spriteName;
+	}
+	public int getX(){
+		return  this.position[0];
+	}
+	public int getY(){
+		return  this.position[1];
+	}
+	public int getRange(){
+		return ship.getRange();
+	}
+
     public void relocate(int[] position){//Sets location to x,y
-        this.position = position;
+		int X =position[0];
+		int Y =position[1];
+		int shipX = this.position[0];
+		int shipY = this.position[1];
+		if (X <= (shipX+32*ship.getRange()) && X >=(shipX-32*ship.getRange())){
+			if (Y <= (shipY+32*ship.getRange()) && Y >=(shipY-32*ship.getRange())){
+				this.position = position;
+			}
+		}
+
+
     }
 
     public void SetupMouse(int[] screenDimentions,Map map){
@@ -123,5 +148,6 @@ public class Player extends Entity{
 			//}
 			//Attacking Needs to be added
 		}
+
 	}
 }
