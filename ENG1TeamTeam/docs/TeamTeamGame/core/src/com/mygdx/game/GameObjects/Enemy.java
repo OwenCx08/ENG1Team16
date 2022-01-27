@@ -30,15 +30,17 @@ public class Enemy{
         }
         return(returnData);
     }
-    public void moveShips(){
+    public int[][] moveShips(){
+        int[][] output = new int[this.ships.length][2];
         for(int i=0; i<this.ships.length;i++){
             if(this.ships[i].checkForPlayer() == null){
-                this.ships[i].move((randomGen.nextInt(4)-2),(randomGen.nextInt(4)-2));
+                output[i] = this.ships[i].move((randomGen.nextInt(4)-2),(randomGen.nextInt(4)-2));
             } else{
                 int[] playerPos = this.ships[i].checkForPlayer();
-                this.ships[i].move(playerPos[0],playerPos[1]);
+                output[i] = this.ships[i].move(playerPos[0],playerPos[1]);
             }
         }
+        return output;
     }
     public void updateMap(Map globalMap){
         this.gameMap = globalMap;

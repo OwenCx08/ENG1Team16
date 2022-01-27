@@ -10,9 +10,10 @@ public class Ship extends Entity{
         this.moveRange = moveRange;
     }
 
-    public void move(int y,int x){//moves the ship x,y "steps"
+    public int[]  move(int y,int x){//moves the ship x,y "steps"
         this.position[0]+=y;
         this.position[1]+=x;
+        return(this.position);
     }
 
     public Boolean detectCollision(){
