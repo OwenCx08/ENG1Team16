@@ -51,6 +51,7 @@ public class Main extends ApplicationAdapter {
 
 			if (type != null && type.isClickable()){
 				System.out.println("Player has moved to "+(int) (pos.x/TileType.TileSize)+"X"+(int) (pos.y/TileType.TileSize)+"Y"+type.getName());
+				//player move
 			}else{
 				System.out.println("Player cannot move there");
 			}
@@ -71,8 +72,8 @@ public class Main extends ApplicationAdapter {
 	protected int[] screenDimentions = {-1,-1};
 	    public Main(){
 	        this.SetupGraphics();
-//			int[] playerPosition = {1012,890};
-	        //this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
+			int[] playerPosition = {1012,890};
+	        this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
 	        //							id, width, height, spriteName, health, position
 			this.enemies = this.SetupEnemys();
 	        //this.gameMap = this.CreateMap();
@@ -96,7 +97,7 @@ public class Main extends ApplicationAdapter {
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {800, 0};//To randomise in area
 			int[] coord2 = {0, 800};//To randomise in area
-	        Enemy[] data = {new Enemy(5,"Vanbrugh",coord1,10,gameMap),new Enemy(30,"Derwent",coord2,25,gameMap)};
+	        Enemy[] data = {new Enemy(5,"Derwent",coord1,10,gameMap),new Enemy(30,"James",coord2,25,gameMap)};
 	        // Setup the Enemys
 	        return(data);
 	    }
