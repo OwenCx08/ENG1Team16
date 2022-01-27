@@ -112,9 +112,10 @@ public class Player extends Entity{
 		if(gridVal==0){
 			//Move to location
 			this.move(coords);
-		}else if(gridVal==1 || gridVal==2 || gridVal==3){
+			//if land is 1 it means it is unable to get there
+		}else if(gridVal==1){
 			//land, collision detection needed
-			this.move(coords);//?
+			System.out.println("Player cannot move there");
 		}else{
 			//if(this.playerOne.playerShip.attack){
 				//Enemy react?
