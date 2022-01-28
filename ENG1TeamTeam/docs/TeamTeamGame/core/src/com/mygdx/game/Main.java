@@ -24,7 +24,7 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch sb;
 	Texture texture;
 	Sprite highlightedSprite;
-	Sprite Player;
+	Sprite playerSprite;
 
 	@Override
 	public void create () {
@@ -42,8 +42,8 @@ public class Main extends ApplicationAdapter {
 		this.enemies = this.SetupEnemys();
 		//this.gameMap = this.CreateMap();
 		this.points = 0;
-		Player = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
-		System.out.println(playerOne.getX() +""+ Player.getY());
+		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
+		System.out.println(playerOne.getX() +""+ playerOne.getY());
 	}
 
 	@Override
@@ -78,8 +78,8 @@ public class Main extends ApplicationAdapter {
 
 		gameMap.render(camera);
 		sb.begin();
-		Player.draw(sb);
-		Player.setPosition(playerOne.getX(),playerOne.getY());
+		playerSprite.draw(sb);
+		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
 		highlightedSprite.setPosition(X, Y);
 		if (X <= upperX && X >= lowerX) {
 			if (Y <= upperY && Y >= lowerY) {
