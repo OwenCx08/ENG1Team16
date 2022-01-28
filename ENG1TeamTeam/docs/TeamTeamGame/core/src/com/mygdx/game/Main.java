@@ -95,6 +95,11 @@ public class Main extends ApplicationAdapter {
 			highlightedSprite.setColor(255,0,0,255);
 		}
 		highlightedSprite.draw(sb);
+		for(int index=0;index<this.enemies.length;index++){
+
+			this.enemies[index].draw(sb);
+
+		};
 		sb.end();
 		}
 
@@ -108,11 +113,12 @@ public class Main extends ApplicationAdapter {
 	protected int points;
 	protected int[] screenDimentions = {-1,-1};
 	    public Main(){
+			this.enemies = this.SetupEnemys();
 	        this.SetupGraphics();
 			int[] playerPosition = {1012,890};
 	        this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
 	        //							id, width, height, spriteName, health, position
-			this.enemies = this.SetupEnemys();
+			
 	        //this.gameMap = this.CreateMap();
 	        this.points = 0;
 			this.screenDimentions[0] = 1024;//?
@@ -135,7 +141,7 @@ public class Main extends ApplicationAdapter {
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {800, 0};//To randomise in area
 			int[] coord2 = {0, 800};//To randomise in area
-	        Enemy[] data = {new Enemy(5,"Derwent",coord1,10,gameMap),new Enemy(30,"James",coord2,25,gameMap)};
+	        Enemy[] data = {new Enemy(5,"Derwent",coord1,1,gameMap),new Enemy(30,"James",coord2,1,gameMap)};
 	        // Setup the Enemys
 	        return(data);
 	    }
@@ -152,11 +158,7 @@ public class Main extends ApplicationAdapter {
 	        //    this.draw(data);
 	        //};
 
-	        for(int index=0;index<this.enemies.length;index++){
-	            //data = 
-				this.enemies[index].draw();
-	            //this.draw(data);
-	        };
+
 
 	        data = this.playerOne.draw();
 	        //this.draw(data);

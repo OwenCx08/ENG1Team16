@@ -8,4 +8,7 @@ public class College extends Entity{
         this.range = range;
         this.name = name;
     }
+    public String getName(){
+        return this.spriteName;
+    }
 }
