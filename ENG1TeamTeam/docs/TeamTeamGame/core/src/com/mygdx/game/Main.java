@@ -74,7 +74,6 @@ public class Main extends ApplicationAdapter {
 		int upperY = playerOne.getY()+ playerOne.getRange()*32;
 		int lowerY = playerOne.getY()- playerOne.getRange()*32;
 
-		System.out.println(upperX);
 
 
 		gameMap.render(camera);
@@ -86,18 +85,14 @@ public class Main extends ApplicationAdapter {
 			if (Y <= upperY && Y >= lowerY) {
 				if(type.isClickable()) {
 					highlightedSprite.setColor(255, 255, 255, 255);
-					System.out.println("Clickable");
 				}else {
 					highlightedSprite.setColor(255,0,0,255);
-					System.out.println("Not clickable");
 				}
 			}else {
 				highlightedSprite.setColor(255,0,0,255);
-				System.out.println("Not clickable");
 			}
 		}else {
 			highlightedSprite.setColor(255,0,0,255);
-			System.out.println("Not clickable");
 		}
 		highlightedSprite.draw(sb);
 		sb.end();
