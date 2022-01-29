@@ -25,7 +25,7 @@ public class Main extends ApplicationAdapter {
 	Texture texture;
 	Sprite highlightedSprite;
 	Sprite playerSprite;
-
+	int counter = 0;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -78,8 +78,16 @@ public class Main extends ApplicationAdapter {
 
 		gameMap.render(camera);
 		sb.begin();
+
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
+		counter += 1;
+		if(counter == 100){
+			for(int i=0;i<this.enemies.length;i++){
+				//this.enemies[i].moveShips();
+			
+			}
+		}
 		highlightedSprite.setPosition(X, Y);
 		if (X <= upperX && X >= lowerX) {
 			if (Y <= upperY && Y >= lowerY) {
@@ -139,8 +147,8 @@ public class Main extends ApplicationAdapter {
 	*/
 
 	    private Enemy[] SetupEnemys(){
-			int[] coord1 = {800, 0};//To randomise in area
-			int[] coord2 = {0, 800};//To randomise in area
+			int[] coord1 = {980,890};//To randomise in area
+			int[] coord2 = {890, 980};//To randomise in area
 	        Enemy[] data = {new Enemy(5,"Derwent",coord1,1,gameMap),new Enemy(30,"James",coord2,1,gameMap)};
 	        // Setup the Enemys
 	        return(data);

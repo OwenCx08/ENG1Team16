@@ -16,11 +16,11 @@ public class EnemyShip extends Ship{
         int[] data = {-1,-1};
         for(int i=-2;i<3;i++){
             for(int j=-2;j<3;i++){
-                if(this.gameMap.getAt(this.position[0]+i,this.position[1]+j)==3){
+                /*if(this.gameMap.getAt(this.position[0]+i,this.position[1]+j)==3){
                     data[0] = this.position[0]+i;
                     data[1] = this.position[1]+j;
                     return (data);
-                }
+                }*/
             }
         }
         //Get player pos
@@ -35,5 +35,7 @@ public class EnemyShip extends Ship{
         }
         return(this.alive);
     }
-
+    public String getSpriteName(){
+        return this.spriteName;
+    }
 }
