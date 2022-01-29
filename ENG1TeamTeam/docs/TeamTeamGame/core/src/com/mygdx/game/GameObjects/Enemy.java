@@ -58,7 +58,7 @@ public class Enemy{
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
             shipsSprites[i].draw(sb);
-            System.out.println(this.coord);
+            //System.out.println(this.coord);
             shipsSprites[i].setPosition(this.coord[0],this.coord[1]);
         }
         
