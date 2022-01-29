@@ -29,8 +29,10 @@ public class Enemy{
 
     public EnemyShip[] CreateShips(int numberOfShips){
         EnemyShip[] returnData = new EnemyShip[numberOfShips];
+        int[] boatPos = {randomGen.nextInt(100)+700,randomGen.nextInt(100)+700};
         for(int i=0;i<numberOfShips;i++){
-            returnData[i] = new EnemyShip(enemyID+1, 1.0f,1.0f, (this.college.spriteName+"Boat.png"), 3, this.coord, 5, 3,this.enemyID,this.gameMap);
+
+            returnData[i] = new EnemyShip(enemyID+1, 1.0f,1.0f, (this.college.spriteName+"Boat.png"), 3, boatPos, 5, 3,this.enemyID,this.gameMap);
         }
         return(returnData);
     }
@@ -58,8 +60,8 @@ public class Enemy{
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
             shipsSprites[i].draw(sb);
-            //System.out.println(this.coord);
-            shipsSprites[i].setPosition(this.coord[0],this.coord[1]);
+            //For some reason this draws them in the bottom left corner at not at they're coordinates
+            shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
         }
         
     }

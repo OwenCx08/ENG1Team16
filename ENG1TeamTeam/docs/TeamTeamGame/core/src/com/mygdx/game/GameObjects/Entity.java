@@ -24,8 +24,5 @@ public class Entity{
         
     }
 
-    public float[] draw(){
-        float[] data = {this.position[0],this.position[1],this.width,this.height};//May need image data
-        return(data);
-    }
+
 }

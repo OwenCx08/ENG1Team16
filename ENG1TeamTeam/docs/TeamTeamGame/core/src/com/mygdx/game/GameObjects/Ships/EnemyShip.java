@@ -10,6 +10,8 @@ public class EnemyShip extends Ship{
         this.gameMap = gameMap;
         this.enemyID = enemyID;
         this.alive=true;
+        this.position = position;
+        //System.out.println(this.position);
     }
     //Searches around a radius of 2 around the ship to see if the player is there
     public int[] checkForPlayer(){
@@ -37,5 +39,13 @@ public class EnemyShip extends Ship{
     }
     public String getSpriteName(){
         return this.spriteName;
+    }
+    public int getX(){
+        System.out.println(this.position[0]);
+        return this.position[0];
+    }
+    public int getY(){
+        System.out.println(this.position[1]);
+        return this.position[1];
     }
 }

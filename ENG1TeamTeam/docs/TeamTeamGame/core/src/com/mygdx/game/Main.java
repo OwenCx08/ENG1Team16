@@ -168,7 +168,7 @@ public class Main extends ApplicationAdapter {
 
 
 
-	        data = this.playerOne.draw();
+
 	        //this.draw(data);
 
 	    }
