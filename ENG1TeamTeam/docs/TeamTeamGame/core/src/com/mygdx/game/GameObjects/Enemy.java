@@ -60,8 +60,12 @@ public class Enemy{
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
             shipsSprites[i].draw(sb);
+            
+            
             //For some reason this draws them in the bottom left corner at not at they're coordinates
-            shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
+            shipsSprites[i].setPosition(this.coord[0],this.coord[1]);
+            //And this one doesn't throws a NullPointerException
+            //shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
         }
         
     }
