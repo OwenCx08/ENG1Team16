@@ -55,12 +55,9 @@ public class Enemy{
         return(college.checkIfAlive());
     }
 
-    public void draw(SpriteBatch sb){
-        Sprite[] shipsSprites = new Sprite[ships.length];
+    public void draw(SpriteBatch sb,Sprite[] shipsSprites){
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
-
-
             //For some reason this draws them in the bottom left corner at not at they're coordinates
             //shipsSprites[i].setPosition(400,400);
             //And this one doesn't throws a NullPointerException
