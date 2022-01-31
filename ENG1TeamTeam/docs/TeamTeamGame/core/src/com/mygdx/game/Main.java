@@ -6,8 +6,11 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -15,7 +18,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Board.*;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.Enemy;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 public class Main extends ApplicationAdapter {
@@ -27,6 +29,7 @@ public class Main extends ApplicationAdapter {
 	Sprite highlightedSprite;
 	Sprite playerSprite;
 	int counter = 0;
+	BitmapFont UIfont;
 	BitmapFont font;
 	@Override
 	public void create () {
@@ -46,8 +49,8 @@ public class Main extends ApplicationAdapter {
 		this.points = 0;
 		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
 		System.out.println(playerOne.getX() +""+ playerOne.getY());
-		font = new BitmapFont();
-		font.setColor(Color.BLACK);
+		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
+		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
 	}
 
 	@Override
@@ -77,13 +80,17 @@ public class Main extends ApplicationAdapter {
 		int lowerX = playerOne.getX()- playerOne.getRange()*32;
 		int upperY = playerOne.getY()+ playerOne.getRange()*32;
 		int lowerY = playerOne.getY()- playerOne.getRange()*32;
-
-
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		gameMap.render(camera);
 		sb.begin();
-		font.draw(sb,"HP:100",10,570);
-		font.draw(sb,"Destroy those two colleges!",10,550);
+		UIfont.draw(sb,"HP:100",10,570);
+		UIfont.draw(sb,"Points:",10,530);
+		UIfont.draw(sb,"Mission:",100,570);
+		font.draw(sb,"Destroy the",100,550);
+		font.draw(sb,"other two",100,530);
+		font.draw(sb,"colleges!",100,510);
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
 		counter += 1;
@@ -180,3 +187,4 @@ public class Main extends ApplicationAdapter {
 
 	
 }
+
