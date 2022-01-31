@@ -1,5 +1,5 @@
 package com.mygdx.game.GameObjects.Ships;
-import com.mygdx.game.Board.Map; 
+import com.mygdx.game.Board.Map;
 public class EnemyShip extends Ship{
     private Boolean alive;
     protected int enemyID;
@@ -41,11 +41,9 @@ public class EnemyShip extends Ship{
         return this.spriteName;
     }
     public int getX(){
-        System.out.println(this.position[0]);
         return this.position[0];
     }
     public int getY(){
-        System.out.println(this.position[1]);
         return this.position[1];
     }
 }

@@ -33,6 +33,8 @@ public class Main extends ApplicationAdapter {
 	BitmapFont UIfont;
 	BitmapFont font;
 	Sprite[] EnemyShipSprites;
+	float gameTime;
+	int seconds;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -54,11 +56,14 @@ public class Main extends ApplicationAdapter {
 		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
 		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
 		EnemyShipSprites = new Sprite[enemies.length];
-
+		float gameTime = 0;
+		int seconds= 0;
 	}
 
 	@Override
 	public void render () {
+		gameTime = gameTime + Gdx.graphics.getDeltaTime();
+		seconds = ((int)gameTime);
 		ScreenUtils.clear(1, 0, 0, 1);
 		Vector3 pos = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(),0));
 		int X =(int) (pos.x/ TileType.TileSize)*32;
@@ -119,13 +124,16 @@ public class Main extends ApplicationAdapter {
 			highlightedSprite.setColor(255,0,0,255);
 		}
 		highlightedSprite.draw(sb);
-		for(int index=0;index<this.enemies.length;index++){
-
+		for(int index=0;index<this.enemies.length;index++) {
 			this.enemies[index].draw(sb, EnemyShipSprites);
-
 		};
 		sb.end();
+		if (seconds >= 1){
+			//Runs every second
+			//enemies.moveShips();
+
 		}
+	}
 
 
 
