@@ -17,7 +17,7 @@ public class Player extends Entity{
     public Player(int id, float width,float height, String spriteName, int health, int[] position){
         super(id, width, height, spriteName, health, position);
         this.college = new PlayerCollege(id, "Vanbrugh",width, height,spriteName,health,position,2);
-		this.ship = new PlayerShip(id, width, height, spriteName, health, position,2,5);
+		this.ship = new PlayerShip(id, width, height, spriteName, health, position,1,5);
 	}
 
     public void move(int[] position){//moves the ship x,y "steps"
