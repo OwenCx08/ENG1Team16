@@ -26,6 +26,7 @@ public class Main extends ApplicationAdapter {
 	Sprite highlightedSprite;
 	Sprite playerSprite;
 	int counter = 0;
+	BitmapFont font;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -44,6 +45,8 @@ public class Main extends ApplicationAdapter {
 		this.points = 0;
 		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
 		System.out.println(playerOne.getX() +""+ playerOne.getY());
+		font = new BitmapFont();
+		font.setColor(Color.BLACK);
 	}
 
 	@Override
@@ -78,7 +81,8 @@ public class Main extends ApplicationAdapter {
 
 		gameMap.render(camera);
 		sb.begin();
-
+		font.draw(sb,"HP:100",10,570);
+		font.draw(sb,"Destroy those two colleges!",10,550);
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
 		counter += 1;
