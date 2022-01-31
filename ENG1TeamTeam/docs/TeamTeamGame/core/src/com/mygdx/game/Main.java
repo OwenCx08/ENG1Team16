@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Board.*;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.Enemy;
+import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
 
 public class Main extends ApplicationAdapter {
@@ -31,6 +32,7 @@ public class Main extends ApplicationAdapter {
 	int counter = 0;
 	BitmapFont UIfont;
 	BitmapFont font;
+	Sprite[] EnemyShipSprites;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -51,6 +53,8 @@ public class Main extends ApplicationAdapter {
 		System.out.println(playerOne.getX() +""+ playerOne.getY());
 		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
 		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
+		EnemyShipSprites = new Sprite[enemies.length];
+
 	}
 
 	@Override
@@ -117,7 +121,7 @@ public class Main extends ApplicationAdapter {
 		highlightedSprite.draw(sb);
 		for(int index=0;index<this.enemies.length;index++){
 
-			this.enemies[index].draw(sb);
+			this.enemies[index].draw(sb, EnemyShipSprites);
 
 		};
 		sb.end();
@@ -160,7 +164,7 @@ public class Main extends ApplicationAdapter {
 
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {980,890};//To randomise in area
-			int[] coord2 = {890, 980};//To randomise in area
+			int[] coord2 = {890, 800};//To randomise in area
 	        Enemy[] data = {new Enemy(5,"Derwent",coord1,1,gameMap),new Enemy(30,"James",coord2,1,gameMap)};
 	        // Setup the Enemys
 	        return(data);
