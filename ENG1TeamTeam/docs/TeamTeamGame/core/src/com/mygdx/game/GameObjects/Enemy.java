@@ -29,7 +29,7 @@ public class Enemy{
 
     public EnemyShip[] CreateShips(int numberOfShips){
         EnemyShip[] returnData = new EnemyShip[numberOfShips];
-        int[] boatPos = {randomGen.nextInt(100)+700,randomGen.nextInt(100)+700};
+        int[] boatPos = {randomGen.nextInt(4)*32+672,randomGen.nextInt(3)*32+384};
         for(int i=0;i<numberOfShips;i++){
 
             returnData[i] = new EnemyShip(enemyID+1, 1.0f,1.0f, (this.college.spriteName+"Boat.png"), 3, boatPos, 5, 3,this.enemyID,this.gameMap);
@@ -59,13 +59,13 @@ public class Enemy{
         Sprite[] shipsSprites = new Sprite[ships.length];
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
-            shipsSprites[i].draw(sb);
-            
-            
+
+
             //For some reason this draws them in the bottom left corner at not at they're coordinates
-            shipsSprites[i].setPosition(this.coord[0],this.coord[1]);
+            //shipsSprites[i].setPosition(400,400);
             //And this one doesn't throws a NullPointerException
-            //shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
+            shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
+            shipsSprites[i].draw(sb);
         }
         
     }

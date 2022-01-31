@@ -160,7 +160,7 @@ public class Main extends ApplicationAdapter {
 
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {980,890};//To randomise in area
-			int[] coord2 = {890, 980};//To randomise in area
+			int[] coord2 = {890, 800};//To randomise in area
 	        Enemy[] data = {new Enemy(5,"Derwent",coord1,1,gameMap),new Enemy(30,"James",coord2,1,gameMap)};
 	        // Setup the Enemys
 	        return(data);
