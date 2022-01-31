@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Board.*;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.Enemy;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 public class Main extends ApplicationAdapter {
