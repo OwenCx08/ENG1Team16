@@ -1,6 +1,10 @@
 package com.mygdx.game.GameObjects.Ships;
 import com.mygdx.game.GameObjects.Entity;
+import com.badlogic.gdx.graphics.g3d.environment.PointLight;
+import com.mygdx.game.Board.Map;
+import com.mygdx.game.Board.TileType;
 public class Ship extends Entity{
+    protected Map gameMap;
     /**
      * Stores the attack range of the ship
      */
@@ -19,10 +23,11 @@ public class Ship extends Entity{
      * @param range the attack range of the ship
      * @param moveRange how far the ship can move in a single move
      */
-    public Ship(int id, float width,float height, String spriteName, int health, int[] position, int range, int moveRange){
+    public Ship(int id, float width,float height, String spriteName, int health, int[] position, int range, int moveRange,Map gameMap){
         super(id, width, height, spriteName, health, position);
         this.range = range;
         this.moveRange = moveRange;
+        this.gameMap = gameMap;
     }
 /**
  * moves the ship x,y "steps"
@@ -42,7 +47,14 @@ public class Ship extends Entity{
  * @param position The new position of the ship
  */
     public void relocate(int[] position){//Sets location to x,y
-        this.position = position;
+        float[] floatPos = new float[2];
+        floatPos[0] = position[0];
+        floatPos[1] = position[1];
+        TileType type = this.gameMap.getTileTypebyLoc(1,floatPos[0],floatPos[1]);
+        if(type != null && type.isClickable()){
+            this.position = position;
+        }
+        
     }
 /**
  * Gets the movement range of the ship
