@@ -33,6 +33,22 @@ public class EnemyCollege extends College{
  * @return whether or not the college is alive
  */
     public Boolean checkIfAlive(){
-        return(health<=0);
+        return(health>0);
+    }
+
+    /**
+ * Deals damage to the college if the college is still alive reducing it's health to 0
+ * @return whether or not the attack did any damage
+ */
+    public  Boolean damage(int damageValue){
+    if(this.health<=0){
+        return(false);
+    }else{
+        this.health-=damageValue;
+        if(this.health<=0){
+           this.health=0;
+        }
+        return(true);
+    }
     }
 }

@@ -42,7 +42,7 @@ public class Enemy{
     public Enemy(int enemyID, String collegeName, int[] coord,int production, Map gameMap){
         this.gameMap = gameMap;
         this.enemyID = enemyID;
-        this.college = new EnemyCollege(enemyID+1, collegeName ,1.0f,1.0f, collegeName, 10, coord, 3, enemyID);//
+        this.college = new EnemyCollege(enemyID+1, collegeName ,1.0f,1.0f, collegeName, 100, coord, 3, enemyID);//
         this.ships = this.CreateShips(production);//number of ships
         //int[] coord = {50, 50};
         this.coord = coord;
@@ -91,7 +91,7 @@ public class Enemy{
      * @return Whether or not this enemy is alive
      */
     public Boolean checkIfAlive(){
-        return(college.checkIfAlive());
+        return(this.college.checkIfAlive());
     }
     /**
      * Draws all the ships onto the map

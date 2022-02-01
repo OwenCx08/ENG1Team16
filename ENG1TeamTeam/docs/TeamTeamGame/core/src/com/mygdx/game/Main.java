@@ -37,6 +37,7 @@ public class Main extends ApplicationAdapter {
 	int seconds;
 	int[] playerVectorMovement={0,0};
 	int[] playerPosMovement;
+	Sprite[] vitoryPlayerSprite;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -57,6 +58,8 @@ public class Main extends ApplicationAdapter {
 		//this.gameMap = this.CreateMap();
 		this.points = 0;
 		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
+		Sprite[] s = {playerSprite,playerSprite};
+		vitoryPlayerSprite = s;
 		System.out.println(playerOne.getX() +""+ playerOne.getY());
 		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
 		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
@@ -86,27 +89,39 @@ public class Main extends ApplicationAdapter {
 		if(Gdx.input.justTouched()){
 			if (type != null && type.isClickable()){
 				//System.out.println(gameX*TileType.TileSize/32*TileType.TileSize+"X,"+gameY*TileType.TileSize/32*TileType.TileSize+"Y");
+				System.out.println(X+":"+Y);
+				System.out.println(upperX+","+lowerX+">"+upperY+","+lowerY);
 				if (X <= upperX && X >= lowerX) {
 					if (Y <= upperY && Y >= lowerY) {
-				System.out.println(gameX+"X,"+gameY+"Y");
-				System.out.println(X+","+Y);
+				//System.out.println(gameX+"X,"+gameY+"Y");
+				//System.out.println(X+","+Y);
 				int[] newPos = {X,Y};
 				playerPosMovement = newPos;
 
 				
-				System.out.println("NVPP:"+playerPos[0]+":"+playerPos[1]);
-				System.out.println("NVPPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
-				System.out.println(playerPosMovement[0]-playerPos[0]);
+				//System.out.println("NVPP:"+playerPos[0]+":"+playerPos[1]);
+				//System.out.println("NVPPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+				//System.out.println(playerPosMovement[0]-playerPos[0]);
 				
 				int[] newVect = {playerVectorMovement[0]+(int) Math.ceil(((playerPosMovement[0]-playerPos[0]))),playerVectorMovement[1]+(int) Math.ceil(((playerPosMovement[1]-playerPos[1])))};
-				System.out.println("NV:"+newVect[0]+":"+newVect[1]);
+				//System.out.println("NV:"+newVect[0]+":"+newVect[1]);
 				
 				playerVectorMovement = newVect;
-				System.out.println("PP:"+playerPos[0]+":"+playerPos[1]);
-				System.out.println("PPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
-				System.out.println("PVM:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
+				//System.out.println("PP:"+playerPos[0]+":"+playerPos[1]);
+				//System.out.println("PPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+				//System.out.println("PVM:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
 				//playerOne.relocate(newPos);
-					}}
+					}};
+					System.out.println(X+":"+Y);
+					if((X==960 || X==992) && (Y==512 || Y==544) && (X-playerOne.getX())<=96 && (Y-playerOne.getY())<=96){
+						this.enemies[0].college.damage(20);
+						System.out.println("Damage");
+						System.out.println(this.enemies[0].college.getHealth());
+					}else if((X==32 || X==0) && (Y==32) && (playerOne.getX()-X)<=96 && (playerOne.getY()-Y)<=96){
+						System.out.println("Damage2");
+						this.enemies[1].college.damage(20);
+					}
+				
 				//player move
 			}else{
 				System.out.println("Player cannot move there");
@@ -119,9 +134,9 @@ public class Main extends ApplicationAdapter {
 		
 		if(playerPosMovement!=playerPos){
 			int[] step = {playerPos[0]+Math.round(playerVectorMovement[0]/28),playerPos[1]+Math.round(playerVectorMovement[1]/28)};
-			System.out.println("PP2:"+playerPos[0]+":"+playerPos[1]);
-			System.out.println("PPM2:"+playerPosMovement[0]+":"+playerPosMovement[1]);
-			System.out.println("PVM2:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
+			//System.out.println("PP2:"+playerPos[0]+":"+playerPos[1]);
+			//System.out.println("PPM2:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+			//System.out.println("PVM2:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
 			playerOne.relocate(step);
 			if(playerVectorMovement[0]!=0 || playerVectorMovement[1]!=0){
 				points+=1;
@@ -146,7 +161,7 @@ public class Main extends ApplicationAdapter {
 		}else{
 			int[] newVect = {0,0};
 			playerVectorMovement = newVect;
-			System.out.println("Q:"+playerVectorMovement[0]+":"+playerVectorMovement[1]+"\n"+playerPos[0]+":"+playerPos[1]);
+			//System.out.println("Q:"+playerVectorMovement[0]+":"+playerVectorMovement[1]+"\n"+playerPos[0]+":"+playerPos[1]);
 		}
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -163,6 +178,18 @@ public class Main extends ApplicationAdapter {
 		font.draw(sb,"colleges!",100,510);
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
+		//try{
+			vitoryPlayerSprite[0].draw(sb);
+			if(this.enemies[0].checkIfAlive()==false){
+				vitoryPlayerSprite[0].setPosition(960, 512);
+			}
+			vitoryPlayerSprite[1].draw(sb);
+			if(this.enemies[1].checkIfAlive()==false){
+				vitoryPlayerSprite[1].setPosition(32, 32);
+			}
+		//}finally{
+			//
+		//}
 		counter += 1;
 		if(counter == 100){
 			for(int i=0;i<this.enemies.length;i++){
