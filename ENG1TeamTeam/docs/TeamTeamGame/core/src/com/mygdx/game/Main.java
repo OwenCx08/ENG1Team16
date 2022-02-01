@@ -204,7 +204,8 @@ public class Main extends ApplicationAdapter {
 		counter += 1;
 		if(counter == 100){
 			for(int i=0;i<this.enemies.length;i++){
-				//this.enemies[i].moveShips();
+				this.enemies[i].moveShips();
+				counter =0;
 			
 			}
 		}

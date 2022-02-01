@@ -36,6 +36,9 @@ public class EnemyShip extends Ship{
      * @return The position of the player if it is in range otherwise returns null
      */
     public int[] checkForPlayer(){
+        if(true){
+            return null;
+        }
         int[] data = {-1,-1};
         for(int i=-2;i<3;i++){
             for(int j=-2;j<3;i++){

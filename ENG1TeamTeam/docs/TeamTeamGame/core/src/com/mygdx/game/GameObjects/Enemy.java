@@ -71,7 +71,8 @@ public class Enemy{
         int[][] output = new int[this.ships.length][2];
         for(int i=0; i<this.ships.length;i++){
             if(this.ships[i].checkForPlayer() == null){
-                output[i] = this.ships[i].move((randomGen.nextInt(4)*32),(randomGen.nextInt(4)*32));
+                int[] data = {this.ships[i].getX()+(randomGen.nextInt(4)-2)*32,this.ships[i].getY()+(randomGen.nextInt(4)-2)*32};
+                this.ships[i].relocate(data);
             } else{
                 int[] playerPos = this.ships[i].checkForPlayer();
                 output[i] = this.ships[i].move(playerPos[0],playerPos[1]);
