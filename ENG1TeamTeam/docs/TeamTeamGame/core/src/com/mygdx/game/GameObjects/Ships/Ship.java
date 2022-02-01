@@ -1,40 +1,53 @@
 package com.mygdx.game.GameObjects.Ships;
 import com.mygdx.game.GameObjects.Entity;
 public class Ship extends Entity{
+    /**
+     * Stores the attack range of the ship
+     */
     protected int range;
+    /**
+     * Stores how far the ship can move in a single move
+     */
     protected int moveRange;
 
+    /**
+     * Contructs a new ship with the given parameters
+     * @param id the Unique idendifier for the entity
+     * @param spriteName the file name of the entity's sprite
+     * @param health the entity's hitpoints
+     * @param position the coordinates of the entity
+     * @param range the attack range of the ship
+     * @param moveRange how far the ship can move in a single move
+     */
     public Ship(int id, float width,float height, String spriteName, int health, int[] position, int range, int moveRange){
         super(id, width, height, spriteName, health, position);
         this.range = range;
         this.moveRange = moveRange;
     }
-
-    public int[]  move(int x,int y){//moves the ship x,y "steps"
+/**
+ * moves the ship x,y "steps"
+ * @param x the change in x position
+ * @param y the change in y position
+ * @return the new position of the ship
+ */
+    public int[]  move(int x,int y){
         this.position[0]+=x;
         this.position[1]+=y;
         return(this.position);
     }
 
-    public Boolean detectCollision(){
-        boolean collision = false;
-        //Colision detection
-        
-        return(collision);
-    }
-    
-    public int[] checkMove(int[] position){
-        int[] data = {this.position[0]+position[0],this.position[1]=position[1]};
-        //this.checkYBounds(this.position[0]+position[0]);
-        //this.checkXBounds(this.position[1]+position[1]);
-        return(data);//Where the ship will be, is it out of bounds?
-    }
 
-
+/**
+ * Sets location of the ship to x,y
+ * @param position The new position of the ship
+ */
     public void relocate(int[] position){//Sets location to x,y
         this.position = position;
     }
-
+/**
+ * Gets the movement range of the ship
+ * @return how far the ship can move in a single move
+ */
     public int getRange(){
         return this.moveRange;
     }
