@@ -154,7 +154,8 @@ public class Main extends ApplicationAdapter {
 		gameMap.render(camera);
 		sb.begin();
 		UIfont.draw(sb,"HP:"+playerOne.getHealth(),10,570);
-		UIfont.draw(sb,"Points:"+this.points,10,530);
+		UIfont.draw(sb,"Points:",10,530);
+		UIfont.draw(sb,"   "+this.points,10,510);
 		UIfont.draw(sb,"Mission:",100,570);
 		//Referencing Tasks?
 		font.draw(sb,"Destroy the",100,550);
