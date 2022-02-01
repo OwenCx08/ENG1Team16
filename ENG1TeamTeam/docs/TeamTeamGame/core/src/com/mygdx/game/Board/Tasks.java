@@ -11,15 +11,26 @@ import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
 public class Tasks implements ApplicationListener {
+	/**
+	 * Stores the spirtebatch that will be used for draw text
+	 */
 	private SpriteBatch batch;
+	/**
+	 * Stores the format of the text
+	 */
 	private BitmapFont font;
+	/**
+	 * Stores the state of task that is in progress
+	 */
 	public int taskState=0;
 
 	@Override
+	/**
+	 * Create the format of the text
+	 */
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		font.setColor(Color.RED);
 	}
 
 	@Override
@@ -27,7 +38,9 @@ public class Tasks implements ApplicationListener {
 		batch.dispose();
 		font.dispose();
 	}
-
+	/**
+	 * The main steps that will activate each task when the lats one is finished
+	 */
 	public void Tasks(){
 		//First task--MOVE!
 		while(taskState==0){
