@@ -22,6 +22,7 @@ import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
 
 public class Main extends ApplicationAdapter {
+
 	OrthographicCamera camera;
 	Map gameMap;
 	int[] player;
@@ -32,6 +33,7 @@ public class Main extends ApplicationAdapter {
 	Texture texture;
 	Sprite highlightedSprite;
 	Sprite playerSprite;
+	Sprite capturedFlag;
 	int counter = 0;
 	/**
 	 * Stores the text format for UI
@@ -67,9 +69,9 @@ public class Main extends ApplicationAdapter {
 		//this.gameMap = this.CreateMap();
 		this.points = 0;
 		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
-		Sprite[] s = {playerSprite,playerSprite};
+		capturedFlag = new Sprite(new Texture(Gdx.files.internal("CapturedFlag.png")));
+		Sprite[] s = {capturedFlag,capturedFlag};
 		vitoryPlayerSprite = s;
-		System.out.println(playerOne.getX() +""+ playerOne.getY());
 		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
 		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
 		EnemyShipSprites = new Sprite[enemies.length];
@@ -190,12 +192,13 @@ public class Main extends ApplicationAdapter {
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
 		//try{
-			vitoryPlayerSprite[0].draw(sb);
+
 			if(this.enemies[0].checkIfAlive()==false){
+				vitoryPlayerSprite[0].draw(sb);
 				vitoryPlayerSprite[0].setPosition(960, 512);
 			}
-			vitoryPlayerSprite[1].draw(sb);
 			if(this.enemies[1].checkIfAlive()==false){
+				vitoryPlayerSprite[1].draw(sb);
 				vitoryPlayerSprite[1].setPosition(32, 32);
 			}
 		//}finally{

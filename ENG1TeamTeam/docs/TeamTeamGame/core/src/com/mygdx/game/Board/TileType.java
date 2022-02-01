@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public enum TileType {
     /*
-    This sets up the different types of tiles that are going to be used by the map
+    *This sets up the different types of tiles that are going to be used by the map
      */
 
     darkWater(1,true,"DarkWater"),

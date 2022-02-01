@@ -24,21 +24,29 @@ public class Map{
     }
 
 
-
+    /**
+     * Loads the .tmx file of the map
+     */
     public Map(){
         tiledMap = new TmxMapLoader().load("Eng1Map.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
     }
 
+    /**
+     * Renders the map and sets the camera to view the map
+     */
     public void render(OrthographicCamera camera){
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
     }
 
-    public void dispose(){
-        tiledMap.dispose();
-    }
-
+    /**
+     * Given the coordinate of the tile in terms of row and column
+     * @param row The position in the row of tiles counted from the left
+     * @param col The position in the column of tiles counted from bottom
+     * @param layer The layer in which the tiles is found. layer = 1 for all tiles
+     * @return TileType for the specific row and column
+     */
     public TileType getTileTypebyCoordinate(int layer, int col, int row){
         TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(0)).getCell(col,row);
         if (cell!=null){
