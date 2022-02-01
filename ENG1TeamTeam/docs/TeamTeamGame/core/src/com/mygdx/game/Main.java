@@ -23,9 +23,8 @@ import com.mygdx.game.GameObjects.Ships.EnemyShip;
 
 public class Main extends ApplicationAdapter {
 
-	OrthographicCamera camera;
+	OrthographicCamera camera; /**Camera used by game**/
 	Map gameMap;
-	int[] player;
 	/**
 	 * Stores SpriteBatch which will be used to display graphics and text
 	 */
@@ -34,7 +33,8 @@ public class Main extends ApplicationAdapter {
 	Sprite highlightedSprite;
 	Sprite playerSprite;
 	Sprite capturedFlag;
-	int counter = 0;
+	Sprite[] EnemyShipSprites;
+
 	/**
 	 * Stores the text format for UI
 	 */
@@ -43,43 +43,59 @@ public class Main extends ApplicationAdapter {
 	 * Stores the text format for normal text
 	 */
 	BitmapFont font;
-	Sprite[] EnemyShipSprites;
-	float gameTime;
-	int seconds;
+	int counter = 0;
+	float gameTime; // Current game time
+	int seconds; // gametime in seconds
 	int[] playerVectorMovement={0,0};
 	int[] playerPosMovement;
 	Sprite[] vitoryPlayerSprite;
 	@Override
+	/**
+	 * Runs at the start of runtime.
+	 * Used to set up constants and classes
+	 * **/
 	public void create () {
+		//camera
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false,1024,576);
 		camera.update();
+
+		//Setup gamemap
 		gameMap = new Map();
+
+		//Sprite batch and cursor highlighter
 		sb = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("highlighted.png"));
 		highlightedSprite = new Sprite(texture);
-		this.SetupGraphics();
+
+		//Setup of the player
 		int[] playerPosition = {896,64};
 		this.playerOne = new Player(0, 100, 100, "VanbrughBoat.png", 100, playerPosition);//Player start data
 		//							id, width, height, spriteName, health, position
 		int[] playerPos = {playerOne.getX(),playerOne.getY()};
 		playerPosMovement = playerPos;
-
-		this.enemies = this.SetupEnemys();
-		//this.gameMap = this.CreateMap();
-		this.points = 0;
 		playerSprite = new Sprite(new Texture(Gdx.files.internal(playerOne.getTexture())));
+
+		//Setup of the enemies
+		this.enemies = this.SetupEnemys();
+		EnemyShipSprites = new Sprite[enemies.length];
+
+		//Starting points
+		this.points = 0;
+
+		//Captured flag setup
 		capturedFlag = new Sprite(new Texture(Gdx.files.internal("CapturedFlag.png")));
 		Sprite[] s = {capturedFlag,capturedFlag};
 		vitoryPlayerSprite = s;
+
+		//Font for top left UI
 		UIfont = new BitmapFont(Gdx.files.internal("UI.fnt"));
 		font = new BitmapFont(Gdx.files.internal("normal.fnt"));
-		EnemyShipSprites = new Sprite[enemies.length];
-		float gameTime = 0;
-		int seconds= 0;
+
+
 	}
 	/**
-	 * Set up the game
+	 * Per frame rendering
 	 */
 	@Override
 	public void render () {
@@ -89,8 +105,6 @@ public class Main extends ApplicationAdapter {
 		Vector3 pos = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(),0));
 		int X =(int) (pos.x/ TileType.TileSize)*32;
 		int Y =(int) (pos.y/TileType.TileSize)*32;
-		int gameX =  (X/TileType.TileSize);
-		int gameY =  (Y/TileType.TileSize);
 		sb.setProjectionMatrix(camera.combined);
 		camera.update();
 		TileType type = gameMap.getTileTypebyLoc(1,X,Y);
@@ -232,12 +246,7 @@ public class Main extends ApplicationAdapter {
 		for(int index=0;index<this.enemies.length;index++) {
 			this.enemies[index].draw(sb, EnemyShipSprites);
 		};
-		sb.end();
-		if (seconds >= 1){
-			//Runs every second
-			//enemies.moveShips();
-
-		}
+		sb.end(); //Stops current sprite batch
 	}
 
 
@@ -246,16 +255,16 @@ public class Main extends ApplicationAdapter {
 	//protected Tasks[] tasks;
 	protected Player playerOne;
 	protected Enemy[] enemies;
-	protected Map Map;
+	//protected Map Map;
 	protected int points;
-	protected int[] screenDimentions = {-1,-1};
+	//protected int[] screenDimentions = {-1,-1};
+	/*
 	    public Main(){
 			this.enemies = this.SetupEnemys();
-	        this.SetupGraphics();
 			//int[] playerPosition = {1012,890};
 	        //this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
 	        //							id, width, height, spriteName, health, position
-			
+
 	        //this.gameMap = this.CreateMap();
 	        this.points = 0;
 			this.screenDimentions[0] = 1024;//?
@@ -263,10 +272,7 @@ public class Main extends ApplicationAdapter {
 
 			//this.playerOne.SetupMouse(this.screenDimentions,this.gameMap);
 	    }
-
-	    private void SetupGraphics(){
-	        //Set up LIBGDX
-	    }
+	*/
 	/*
 	    private Tasks[] SetupTasks(){
 	        Tasks[] data = {new Tasks()};
@@ -275,7 +281,7 @@ public class Main extends ApplicationAdapter {
 	    }
 	*/
 	/**
-	 	* Set up the enemy on the map
+	 	* Set up the enemy ships found on the map
 	 	*/
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {980,890};//To randomise in area
@@ -285,23 +291,7 @@ public class Main extends ApplicationAdapter {
 	        return(data);
 	    }
 
-	    public void draw(){
-	        float[] data;
-	        
-	        //data = 
-	        //this.draw(data);
 
-	        //for(int index=0;index<this.tasks.length;index++){
-	        //    data = this.tasks[index].draw();
-	        //    this.draw(data);
-	        //};
-
-
-
-
-	        //this.draw(data);
-
-	    }
 
 	
 }

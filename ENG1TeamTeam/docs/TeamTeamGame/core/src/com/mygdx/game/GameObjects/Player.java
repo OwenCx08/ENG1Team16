@@ -9,17 +9,29 @@ import com.mygdx.game.Board.TileType;
 import com.mygdx.game.GameObjects.Colleges.PlayerCollege;
 import com.mygdx.game.GameObjects.Ships.PlayerShip;
 
+
 public class Player extends Entity{
     protected int[] screenDimentions ={-1,-1};
     protected Map gameMap;
 	protected PlayerCollege college;
 	protected PlayerShip ship;
+
+	/**
+	 * Player constructor
+	 * @param health Current health of the player
+	 * @param height
+	 * @param id Id of the player
+	 * @param position Position of the player
+	 * @param spriteName Name of the players sprite
+	 * @param width
+	 *
+	 */
     public Player(int id, float width,float height, String spriteName, int health, int[] position){
         super(id, width, height, spriteName, health, position);
         this.college = new PlayerCollege(id, "Vanbrugh",width, height,spriteName,health,position,2);
 		this.ship = new PlayerShip(id, width, height, spriteName, health, position,1,1,gameMap);
 	}
-
+	/*
     public void move(int[] position){//moves the ship x,y "steps"
         this.position[0]+=position[0];
         this.position[1]+=position[1];
@@ -28,30 +40,50 @@ public class Player extends Entity{
     public Boolean detectCollision(){
         boolean collision = false;
         //Colision detection
-        
+
         return(collision);
     }
-    
+
     public int[] checkMove(int[] position){
         int[] data = {this.position[0]+position[0],this.position[1]=position[1]};
         //this.checkYBounds(this.position[0]+position[0]);
         //this.checkXBounds(this.position[1]+position[1]);
         return(data);//Where the ship will be, is it out of bounds?
-    }
+    }*/
 
+	/**
+	 * Getter for texture
+	 * @return Player sprite texture
+	 */
 	public String getTexture(){
 		return  this.spriteName;
 	}
+	/**
+	 * Getter for player X position
+	 * @return Player X position
+	 */
 	public int getX(){
 		return  this.position[0];
 	}
+	/**
+	 * Getter for player Y position
+	 * @return Player Y position
+	 */
 	public int getY(){
 		return  this.position[1];
 	}
+	/**
+	 * Getter for Range of player ship
+	 * @return Player's ship range
+	 */
 	public int getRange(){
 		return ship.getRange();
 	}
 
+	/**
+	 * Relocates the players ship based on position
+	 * @param position position the player ship needs to be
+	 */
     public void relocate(int[] position){//Sets location to x,y
 		int X =position[0];
 		int Y =position[1];
@@ -65,7 +97,7 @@ public class Player extends Entity{
 
 
     }
-
+	/*
     public void SetupMouse(int[] screenDimentions,Map map){
         this.screenDimentions = screenDimentions;
         this.gameMap = map;
@@ -151,4 +183,6 @@ public class Player extends Entity{
 		}
 
 	}
+	*/
+
 }
