@@ -8,14 +8,37 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Enemy{
+    /**
+     * Stores the unique identifier for the enemy
+     */
     private int enemyID;
+    /**
+     * Stores the starting location of an enemy's ships
+     */
     protected int[] coord;
+    /**
+     * Stores the list of all the ships owned by this enemy
+     */
     public EnemyShip[] ships;
+    /**
+     * Stores the college owned by this enemy
+     */
     public EnemyCollege college;
+    /**
+     * Stores the current state of the map
+     */
     public Map gameMap;
+
     Random randomGen = new Random();
     
-    
+    /**
+     * Constructs a new enemy with the given parameters
+     * @param enemyID the unique identifier for the enemy
+     * @param collegeName the name of the college, used to find the sprites for the ships
+     * @param coord the starting location of an enemy's ships
+     * @param production the starting number of ships owned by the enemy
+     * @param gameMap the current state of the map
+     */
     public Enemy(int enemyID, String collegeName, int[] coord,int production, Map gameMap){
         this.gameMap = gameMap;
         this.enemyID = enemyID;
@@ -26,7 +49,11 @@ public class Enemy{
         
         
     }
-
+    /**
+     * Creates and Initialises all the ships owned by an enemy
+     * @param numberOfShips the number of ships owned by the enemy
+     * @return The list of all the ships owned by this enemy
+     */
     public EnemyShip[] CreateShips(int numberOfShips){
         EnemyShip[] returnData = new EnemyShip[numberOfShips];
         int[] boatPos = {randomGen.nextInt(4)*32+672,randomGen.nextInt(3)*32+384};
@@ -36,6 +63,10 @@ public class Enemy{
         }
         return(returnData);
     }
+    /**
+     * Moves all the ships owned by this enemy
+     * @return A list of all the new coordinates of the ships owned by this enemy
+     */
     public int[][] moveShips(){
         int[][] output = new int[this.ships.length][2];
         for(int i=0; i<this.ships.length;i++){
@@ -48,19 +79,28 @@ public class Enemy{
         }
         return output;
     }
+    /**
+     * Update the currently stored model of the map
+     * @param globalMap the current map
+     */
     public void updateMap(Map globalMap){
         this.gameMap = globalMap;
     }
+    /**
+     * Checks if this enemy is still alive by checking if it still has its college
+     * @return Whether or not this enemy is alive
+     */
     public Boolean checkIfAlive(){
         return(college.checkIfAlive());
     }
-
+    /**
+     * Draws all the ships onto the map
+     * @param sb
+     * @param shipsSprites The list of sprites used for the ships
+     */
     public void draw(SpriteBatch sb,Sprite[] shipsSprites){
         for(int i=0;i<ships.length;i++){
             shipsSprites[i] = new Sprite(new Texture(Gdx.files.internal(ships[i].getSpriteName())));
-            //For some reason this draws them in the bottom left corner at not at they're coordinates
-            //shipsSprites[i].setPosition(400,400);
-            //And this one doesn't throws a NullPointerException
             shipsSprites[i].setPosition(this.ships[i].getX(),this.ships[i].getY());
             shipsSprites[i].draw(sb);
         }
