@@ -243,7 +243,6 @@ public class Main extends ApplicationAdapter {
 	        float[] data;
 	        
 	        //data = 
-			this.gameMap.draw();
 	        //this.draw(data);
 
 	        //for(int index=0;index<this.tasks.length;index++){
