@@ -105,8 +105,10 @@ public class Main extends ApplicationAdapter {
 		Vector3 pos = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(),0));
 		int X =(int) (pos.x/ TileType.TileSize)*32;
 		int Y =(int) (pos.y/TileType.TileSize)*32;
-		sb.setProjectionMatrix(camera.combined);
+
+		sb.setProjectionMatrix(camera.combined); // Allows for x,y to be taken accurately 
 		camera.update();
+
 		TileType type = gameMap.getTileTypebyLoc(1,X,Y);
 		int[] playerPos = {playerOne.getX(),playerOne.getY()};
 		int upperX = playerOne.getX()+ playerOne.getRange()*32;
@@ -158,7 +160,7 @@ public class Main extends ApplicationAdapter {
 				//playerVectorMovement = newVect;
 			}
 		}
-		
+		// Slower movement of player
 		if(playerPosMovement!=playerPos){
 			int[] step = {playerPos[0]+Math.round(playerVectorMovement[0]/28),playerPos[1]+Math.round(playerVectorMovement[1]/28)};
 			//System.out.println("PP2:"+playerPos[0]+":"+playerPos[1]);
@@ -193,7 +195,9 @@ public class Main extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		//Renders game map
 		gameMap.render(camera);
+
 		sb.begin();
 		UIfont.draw(sb,"HP:"+playerOne.getHealth(),10,570);
 		UIfont.draw(sb,"Points:",10,530);
@@ -203,10 +207,11 @@ public class Main extends ApplicationAdapter {
 		font.draw(sb,"Destroy the",100,550);
 		font.draw(sb,"other two",100,530);
 		font.draw(sb,"colleges!",100,510);
+		//Player position and drawing
 		playerSprite.draw(sb);
 		playerSprite.setPosition(playerOne.getX(),playerOne.getY());
 		//try{
-
+		//Beating a college
 			if(this.enemies[0].checkIfAlive()==false){
 				vitoryPlayerSprite[0].draw(sb);
 				vitoryPlayerSprite[0].setPosition(960, 512);
@@ -228,6 +233,7 @@ public class Main extends ApplicationAdapter {
 			
 			}
 		}
+		//Sets the highlighter color and position
 		highlightedSprite.setPosition(X, Y);
 		if (X <= upperX && X >= lowerX) {
 			if (Y <= upperY && Y >= lowerY) {
@@ -243,6 +249,7 @@ public class Main extends ApplicationAdapter {
 			highlightedSprite.setColor(255,0,0,255);
 		}
 		highlightedSprite.draw(sb);
+		//Draws enemy ships
 		for(int index=0;index<this.enemies.length;index++) {
 			this.enemies[index].draw(sb, EnemyShipSprites);
 		};
