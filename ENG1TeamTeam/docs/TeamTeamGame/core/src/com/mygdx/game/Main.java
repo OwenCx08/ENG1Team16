@@ -201,6 +201,8 @@ public class Main extends ApplicationAdapter {
 		//}finally{
 			//
 		//}
+
+		//Enemies move every 100 frames
 		counter += 1;
 		if(counter == 100){
 			for(int i=0;i<this.enemies.length;i++){
