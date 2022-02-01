@@ -25,12 +25,21 @@ public class Main extends ApplicationAdapter {
 	OrthographicCamera camera;
 	Map gameMap;
 	int[] player;
+	/**
+	 * Stores SpriteBatch which will be used to display graphics and text
+	 */
 	SpriteBatch sb;
 	Texture texture;
 	Sprite highlightedSprite;
 	Sprite playerSprite;
 	int counter = 0;
+	/**
+	 * Stores the text format for UI
+	 */
 	BitmapFont UIfont;
+	/**
+	 * Stores the text format for normal text
+	 */
 	BitmapFont font;
 	Sprite[] EnemyShipSprites;
 	float gameTime;
@@ -67,7 +76,9 @@ public class Main extends ApplicationAdapter {
 		float gameTime = 0;
 		int seconds= 0;
 	}
-
+	/**
+	 * Set up the game
+	 */
 	@Override
 	public void render () {
 		gameTime = gameTime + Gdx.graphics.getDeltaTime();
@@ -257,7 +268,9 @@ public class Main extends ApplicationAdapter {
 	        return(data);
 	    }
 	*/
-
+	/**
+	 	* Set up the enemy on the map
+	 	*/
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {980,890};//To randomise in area
 			int[] coord2 = {890, 800};//To randomise in area
