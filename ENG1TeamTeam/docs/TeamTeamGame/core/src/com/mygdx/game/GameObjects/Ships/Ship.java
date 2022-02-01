@@ -10,9 +10,9 @@ public class Ship extends Entity{
         this.moveRange = moveRange;
     }
 
-    public int[]  move(int y,int x){//moves the ship x,y "steps"
-        this.position[0]+=y;
-        this.position[1]+=x;
+    public int[]  move(int x,int y){//moves the ship x,y "steps"
+        this.position[0]+=x;
+        this.position[1]+=y;
         return(this.position);
     }
 
@@ -36,6 +36,6 @@ public class Ship extends Entity{
     }
 
     public int getRange(){
-        return this.range;
+        return this.moveRange;
     }
 }

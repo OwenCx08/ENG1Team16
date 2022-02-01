@@ -35,6 +35,8 @@ public class Main extends ApplicationAdapter {
 	Sprite[] EnemyShipSprites;
 	float gameTime;
 	int seconds;
+	int[] playerVectorMovement={0,0};
+	int[] playerPosMovement;
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
@@ -45,9 +47,12 @@ public class Main extends ApplicationAdapter {
 		texture = new Texture(Gdx.files.internal("highlighted.png"));
 		highlightedSprite = new Sprite(texture);
 		this.SetupGraphics();
-		int[] playerPosition = {896,128};
+		int[] playerPosition = {896,64};
 		this.playerOne = new Player(0, 100, 100, "VanbrughBoat.png", 100, playerPosition);//Player start data
 		//							id, width, height, spriteName, health, position
+		int[] playerPos = {playerOne.getX(),playerOne.getY()};
+		playerPosMovement = playerPos;
+
 		this.enemies = this.SetupEnemys();
 		//this.gameMap = this.CreateMap();
 		this.points = 0;
@@ -73,22 +78,73 @@ public class Main extends ApplicationAdapter {
 		sb.setProjectionMatrix(camera.combined);
 		camera.update();
 		TileType type = gameMap.getTileTypebyLoc(1,X,Y);
-		if(Gdx.input.justTouched()){
-			if (type != null && type.isClickable()){
-				System.out.println(gameX+"X,"+gameY+"Y");
-				System.out.println(X+","+Y);
-				int[] newPos = {X,Y};
-				playerOne.relocate(newPos);
-
-				//player move
-			}else{
-				System.out.println("Player cannot move there");
-			}
-		}
+		int[] playerPos = {playerOne.getX(),playerOne.getY()};
 		int upperX = playerOne.getX()+ playerOne.getRange()*32;
 		int lowerX = playerOne.getX()- playerOne.getRange()*32;
 		int upperY = playerOne.getY()+ playerOne.getRange()*32;
 		int lowerY = playerOne.getY()- playerOne.getRange()*32;
+		if(Gdx.input.justTouched()){
+			if (type != null && type.isClickable()){
+				//System.out.println(gameX*TileType.TileSize/32*TileType.TileSize+"X,"+gameY*TileType.TileSize/32*TileType.TileSize+"Y");
+				if (X <= upperX && X >= lowerX) {
+					if (Y <= upperY && Y >= lowerY) {
+				System.out.println(gameX+"X,"+gameY+"Y");
+				System.out.println(X+","+Y);
+				int[] newPos = {X,Y};
+				playerPosMovement = newPos;
+
+				
+				System.out.println("NVPP:"+playerPos[0]+":"+playerPos[1]);
+				System.out.println("NVPPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+				System.out.println(playerPosMovement[0]-playerPos[0]);
+				
+				int[] newVect = {(int) Math.ceil(((playerPosMovement[0]-playerPos[0]))),(int) Math.ceil(((playerPosMovement[1]-playerPos[1])))};
+				System.out.println("NV:"+newVect[0]+":"+newVect[1]);
+				
+				playerVectorMovement = newVect;
+				System.out.println("PP:"+playerPos[0]+":"+playerPos[1]);
+				System.out.println("PPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+				System.out.println("PVM:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
+				//playerOne.relocate(newPos);
+					}}
+				//player move
+			}else{
+				System.out.println("Player cannot move there");
+				//int[] newpos = playerPos;
+				//playerPosMovement = newpos;
+				//int[] newVect = {0,0};
+				//playerVectorMovement = newVect;
+			}
+		}
+		
+		if(playerPosMovement!=playerPos){
+			int[] step = {playerPos[0]+Math.round(playerVectorMovement[0]/28),playerPos[1]+Math.round(playerVectorMovement[1]/28)};
+			System.out.println("PP2:"+playerPos[0]+":"+playerPos[1]);
+			System.out.println("PPM2:"+playerPosMovement[0]+":"+playerPosMovement[1]);
+			System.out.println("PVM2:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
+			playerOne.relocate(step);
+			int[] voidPos = {playerOne.getX(),playerOne.getY()};
+			playerPos = voidPos;
+			if((playerPos[0]<=playerPosMovement[0]) && playerVectorMovement[0]<=0){//|| (playerPos[0]>=playerPosMovement[0] && playerPos[1]<=playerPosMovement[1])){
+				int[] newVect = {0,playerVectorMovement[1]};
+				playerVectorMovement = newVect;
+			}else if((playerPos[0]>=playerPosMovement[0]) && playerVectorMovement[0]>0){//|| (playerPos[0]>=playerPosMovement[0] && playerPos[1]<=playerPosMovement[1])){
+				int[] newVect = {0,playerVectorMovement[1]};
+				playerVectorMovement = newVect;
+			}//&&
+			if((playerPos[1]<=playerPosMovement[1]) && playerVectorMovement[1]<=0){
+				int[] newVect = {playerVectorMovement[0],0};
+				playerVectorMovement = newVect;
+			}else if(playerPos[1]>=playerPosMovement[1] && playerVectorMovement[1]>=0){
+				int[] newVect = {playerVectorMovement[0],0};
+				playerVectorMovement = newVect;
+			}
+			
+		}else{
+			int[] newVect = {0,0};
+			playerVectorMovement = newVect;
+			System.out.println("Q:"+playerVectorMovement[0]+":"+playerVectorMovement[1]+"\n"+playerPos[0]+":"+playerPos[1]);
+		}
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -112,7 +168,7 @@ public class Main extends ApplicationAdapter {
 		highlightedSprite.setPosition(X, Y);
 		if (X <= upperX && X >= lowerX) {
 			if (Y <= upperY && Y >= lowerY) {
-				if(type.isClickable()) {
+				if(type!=null && type.isClickable()) {
 					highlightedSprite.setColor(255, 255, 255, 255);
 				}else {
 					highlightedSprite.setColor(255,0,0,255);
@@ -147,8 +203,8 @@ public class Main extends ApplicationAdapter {
 	    public Main(){
 			this.enemies = this.SetupEnemys();
 	        this.SetupGraphics();
-			int[] playerPosition = {1012,890};
-	        this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
+			//int[] playerPosition = {1012,890};
+	        //this.playerOne = new Player(0, 100, 100, "Player", 100, playerPosition);//Player start data
 	        //							id, width, height, spriteName, health, position
 			
 	        //this.gameMap = this.CreateMap();

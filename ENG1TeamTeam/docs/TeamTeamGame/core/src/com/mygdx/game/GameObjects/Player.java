@@ -17,7 +17,7 @@ public class Player extends Entity{
     public Player(int id, float width,float height, String spriteName, int health, int[] position){
         super(id, width, height, spriteName, health, position);
         this.college = new PlayerCollege(id, "Vanbrugh",width, height,spriteName,health,position,2);
-		this.ship = new PlayerShip(id, width, height, spriteName, health, position,1,5);
+		this.ship = new PlayerShip(id, width, height, spriteName, health, position,1,1);
 	}
 
     public void move(int[] position){//moves the ship x,y "steps"
@@ -57,8 +57,8 @@ public class Player extends Entity{
 		int Y =position[1];
 		int shipX = this.position[0];
 		int shipY = this.position[1];
-		if (X <= (shipX+32*ship.getRange()) && X >=(shipX-32*ship.getRange())){
-			if (Y <= (shipY+32*ship.getRange()) && Y >=(shipY-32*ship.getRange())){
+		if (X <= (shipX+32*ship.getRange()) || X >=(shipX-32*ship.getRange())){//&&
+			if (Y <= (shipY+32*ship.getRange()) || Y >=(shipY-32*ship.getRange())){//&&
 				this.position = position;
 			}
 		}
