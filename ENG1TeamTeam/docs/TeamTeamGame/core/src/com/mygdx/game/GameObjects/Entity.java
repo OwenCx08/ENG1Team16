@@ -16,7 +16,9 @@ public class Entity{
         this.position = position;
     }
 
-
+    public int getHealth(){
+        return(this.health);
+    }
 
     public void attack(int[] position){
         //attach method

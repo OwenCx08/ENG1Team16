@@ -98,7 +98,7 @@ public class Main extends ApplicationAdapter {
 				System.out.println("NVPPM:"+playerPosMovement[0]+":"+playerPosMovement[1]);
 				System.out.println(playerPosMovement[0]-playerPos[0]);
 				
-				int[] newVect = {(int) Math.ceil(((playerPosMovement[0]-playerPos[0]))),(int) Math.ceil(((playerPosMovement[1]-playerPos[1])))};
+				int[] newVect = {playerVectorMovement[0]+(int) Math.ceil(((playerPosMovement[0]-playerPos[0]))),playerVectorMovement[1]+(int) Math.ceil(((playerPosMovement[1]-playerPos[1])))};
 				System.out.println("NV:"+newVect[0]+":"+newVect[1]);
 				
 				playerVectorMovement = newVect;
@@ -123,6 +123,9 @@ public class Main extends ApplicationAdapter {
 			System.out.println("PPM2:"+playerPosMovement[0]+":"+playerPosMovement[1]);
 			System.out.println("PVM2:"+playerVectorMovement[0]+":"+playerVectorMovement[1]);
 			playerOne.relocate(step);
+			if(playerVectorMovement[0]!=0 || playerVectorMovement[1]!=0){
+				points+=1;
+			}
 			int[] voidPos = {playerOne.getX(),playerOne.getY()};
 			playerPos = voidPos;
 			if((playerPos[0]<=playerPosMovement[0]) && playerVectorMovement[0]<=0){//|| (playerPos[0]>=playerPosMovement[0] && playerPos[1]<=playerPosMovement[1])){
@@ -150,9 +153,10 @@ public class Main extends ApplicationAdapter {
 
 		gameMap.render(camera);
 		sb.begin();
-		UIfont.draw(sb,"HP:100",10,570);
-		UIfont.draw(sb,"Points:",10,530);
+		UIfont.draw(sb,"HP:"+playerOne.getHealth(),10,570);
+		UIfont.draw(sb,"Points:"+this.points,10,530);
 		UIfont.draw(sb,"Mission:",100,570);
+		//Referencing Tasks?
 		font.draw(sb,"Destroy the",100,550);
 		font.draw(sb,"other two",100,530);
 		font.draw(sb,"colleges!",100,510);
