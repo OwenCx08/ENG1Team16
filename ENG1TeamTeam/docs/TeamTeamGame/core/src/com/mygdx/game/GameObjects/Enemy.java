@@ -65,19 +65,18 @@ public class Enemy{
     }
     /**
      * Moves all the ships owned by this enemy
-     * @return A list of all the new coordinates of the ships owned by this enemy
      */
-    public int[][] moveShips(){
-        int[][] output = new int[this.ships.length][2];
+    public void moveShips(){
         for(int i=0; i<this.ships.length;i++){
             if(this.ships[i].checkForPlayer() == null){
-                output[i] = this.ships[i].move((randomGen.nextInt(4)*32),(randomGen.nextInt(4)*32));
+                int[] data = {this.ships[i].getX()+(randomGen.nextInt(2)-1)*32,this.ships[i].getY()+(randomGen.nextInt(2)-1)*32};
+                this.ships[i].relocate(data);
             } else{
                 int[] playerPos = this.ships[i].checkForPlayer();
-                output[i] = this.ships[i].move(playerPos[0],playerPos[1]);
+                this.ships[i].relocate(playerPos);
             }
         }
-        return output;
+
     }
     /**
      * Update the currently stored model of the map

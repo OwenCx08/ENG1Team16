@@ -25,8 +25,7 @@ public class EnemyShip extends Ship{
      * @param gameMap the current layout of the map
      */
     public EnemyShip(int id, float width,float height, String spriteName, int health, int[] position, int range, int moveRange,int enemyID, Map gameMap){
-        super(id, width, height, spriteName, health, position,range,moveRange);
-        this.gameMap = gameMap;
+        super(id, width, height, spriteName, health, position,range,moveRange,gameMap);
         this.enemyID = enemyID;
         this.alive=true;
         this.position = position;
@@ -36,6 +35,9 @@ public class EnemyShip extends Ship{
      * @return The position of the player if it is in range otherwise returns null
      */
     public int[] checkForPlayer(){
+        if(true){
+            return null;
+        }
         int[] data = {-1,-1};
         for(int i=-2;i<3;i++){
             for(int j=-2;j<3;i++){
