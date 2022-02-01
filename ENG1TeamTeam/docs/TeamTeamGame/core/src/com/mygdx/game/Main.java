@@ -106,7 +106,7 @@ public class Main extends ApplicationAdapter {
 		int X =(int) (pos.x/ TileType.TileSize)*32;
 		int Y =(int) (pos.y/TileType.TileSize)*32;
 
-		sb.setProjectionMatrix(camera.combined); // Allows for x,y to be taken accurately 
+		sb.setProjectionMatrix(camera.combined); // Allows for x,y to be taken accurately
 		camera.update();
 
 		TileType type = gameMap.getTileTypebyLoc(1,X,Y);
