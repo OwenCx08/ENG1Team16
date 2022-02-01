@@ -281,8 +281,9 @@ public class Main extends ApplicationAdapter {
 	    }
 	*/
 	/**
-	 	* Set up the enemy ships found on the map
-	 	*/
+	 * Set up the enemy ships found on the map
+	 * @return the information about the enemies
+	 */
 	    private Enemy[] SetupEnemys(){
 			int[] coord1 = {980,890};//To randomise in area
 			int[] coord2 = {890, 800};//To randomise in area
